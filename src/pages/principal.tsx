@@ -1,9 +1,12 @@
 import { FC } from "react";
 import AppPrincipalBar from "../components/appbar/appbar";
+import { UserProvider } from "../context/user.context";
 
 const Principal: FC = () => {
     return (<>
-        <AppPrincipalBar />
+        <UserProvider>
+            <AppPrincipalBar />
+        </UserProvider>
     </>);
 }
 

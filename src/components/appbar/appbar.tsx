@@ -5,7 +5,6 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
-
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -17,19 +16,14 @@ import { UserService } from "../../services/api/auth.service";
 import SignUp from '../../pages/signup/signup';
 import Gallery from '../gallery/gallery';
 import SignIn from '../../pages/login/signin';
-//import { Route, Home } from '@mui/icons-material';
-//import { Switch } from '@mui/material';
-
-import "./styles.scss";
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { useUser } from '../../context/user.context';
+import "./styles.scss";
 
-
-const pages = ['Sign In', 'Sign Up', 'Gallery'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 const userService = new UserService();
-
 const AppPrincipalBar: FC = () => {
 
+    const user = useUser();
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
     const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -59,11 +53,12 @@ const AppPrincipalBar: FC = () => {
         window.location.href = '/signin';
     }
 
-
-    const loginOk = () => {
+    const loginOk = (username: string) => {
+        //seteo el contexto
+        user.setUserContext(username);
+        alert("Bienvenido " + username);
         window.location.href = '/gallery';
     }
-
 
     return (
         <>
@@ -87,10 +82,8 @@ const AppPrincipalBar: FC = () => {
                                     textDecoration: 'none',
                                 }}
                             >
-                                LOGO
+                                Instant
                             </Typography>
-
-
                             <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
                             <Typography
                                 variant="h5"
@@ -125,6 +118,7 @@ const AppPrincipalBar: FC = () => {
                                     </Link>
                                 </>
                                 }
+
                                 {userService.isLogin() &&
                                     <Link to="/gallery">
                                         <Button sx={{ my: 2, color: 'white', display: 'block' }}>
@@ -133,6 +127,7 @@ const AppPrincipalBar: FC = () => {
                                     </Link>
                                 }
                             </Box>
+
                             {userService.isLogin() &&
                                 <Box sx={{ flexGrow: 0 }}>
                                     <Tooltip title="Open settings">
@@ -156,11 +151,14 @@ const AppPrincipalBar: FC = () => {
                                         open={Boolean(anchorElUser)}
                                         onClose={handleCloseUserMenu}
                                     >
-                                        {settings.map((setting) => (
-                                            <MenuItem key={setting} onClick={() => handleMenu(setting)}>
-                                                <Typography textAlign="center">{setting}</Typography>
-                                            </MenuItem>
-                                        ))}
+
+                                        <MenuItem>
+                                            <Typography textAlign="center"> Bienvenido {user.user}</Typography>
+                                        </MenuItem>
+                                        <MenuItem onClick={() => handleMenu("logout")}>
+                                            <Typography textAlign="center"> Logout</Typography>
+                                        </MenuItem>
+
                                     </Menu>
                                 </Box>
                             }

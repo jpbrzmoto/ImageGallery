@@ -6,7 +6,7 @@ import { AccountCircle } from "@mui/icons-material";
 import { UserService } from "../../services/api/auth.service";
 
 interface ComponentProps {
-    onLoginOk: () => void;
+    onLoginOk: (user: string) => void;
 }
 
 
@@ -42,7 +42,7 @@ const SignIn: FC<ComponentProps> = ({ onLoginOk }) => {
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
         userService.setUser(formData.user);
-        onLoginOk();
+        onLoginOk(formData.user);
         console.log(formData);
         setFormData({
             user: "",

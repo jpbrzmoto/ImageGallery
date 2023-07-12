@@ -1,6 +1,3 @@
-import axios from 'axios';
-
-const API_BASE_URL = 'https://api.example.com'; // Reemplaza con la URL base de tu API
 
 export interface User {
     name: string;
@@ -36,16 +33,4 @@ export class UserService {
         localStorage.clear();
     }
 
-    /*
-    // Obtener un usuario por su ID
-    async getUser(userId: number): Promise<User> {
-        const response = await axios.get<User>(`${API_BASE_URL}/users/${userId}`);
-        return response.data;
-    }
-
-    // Crear un nuevo usuario
-    async postUser(userData: User): Promise<User> {
-        const response = await axios.post<User>(`${API_BASE_URL}/users`, userData);
-        return response.data;
-    }*/
 }

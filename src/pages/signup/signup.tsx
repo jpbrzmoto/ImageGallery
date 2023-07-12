@@ -36,8 +36,6 @@ const SignUp: FC = () => {
     };
     return (
 
-
-
         <Container maxWidth="xs" className="box-shadow-s">
 
             <Grid container direction="column" alignItems="center" justifyContent="center" sx={{ minHeight: "90vh" }}>
