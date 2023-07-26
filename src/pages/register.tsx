@@ -1,6 +1,4 @@
 
-import * as React from "react";
-import { render } from "react-dom";
 import { useForm } from "react-hook-form";
 
 
@@ -19,6 +17,7 @@ export default function Register() {
     } = useForm<FormData>();
     const onSubmit = handleSubmit(({ firstName, lastName }) => {
         console.log(firstName, lastName);
+        console.log(errors);
     }); // firstName and lastName will have correct type
 
     return (
@@ -32,7 +31,7 @@ export default function Register() {
                 onClick={() => {
                     setValue("lastName", "luo"); // ✅
                     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-                    errors.bill; // ❌: property bill does not exist
+                    // errors.bill; // ❌: property bill does not exist
                 }}
             >
                 SetValue

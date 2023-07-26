@@ -1,8 +1,8 @@
 import { Box, FormControl, InputLabel, InputAdornment, IconButton, OutlinedInput, Grid, Container, Paper, Typography, Button, Divider } from "@mui/material";
-import React, { ChangeEvent, FC, FormEvent, useState } from "react";
+import React, { FC } from "react";
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import { AccountCircle, AlternateEmail, Margin } from "@mui/icons-material";
+import { AccountCircle, AlternateEmail } from "@mui/icons-material";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 type SignUpFormData = {
