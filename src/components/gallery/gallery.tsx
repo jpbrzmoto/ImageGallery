@@ -28,7 +28,7 @@ const Gallery: FC = () => {
             {userService.isLogin() &&
                 <div className="card-list">
                     {ImageGallery.map((obj, index) => (
-                        <ImageCard key={index} image={`src\\assets\\image\\gallery\\${obj.image}`}
+                        <ImageCard key={index} image={`./gallery/${obj.image}`}
                             initial={obj.initial}
                             title={obj.title}
                             date={obj.date}
